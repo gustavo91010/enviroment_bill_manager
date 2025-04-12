@@ -1,0 +1,14 @@
+services:
+  config-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: config-server
+    ports:
+      - "8888:8888"
+    environment:
+      - SPRING_PROFILES_ACTIVE=native
+      - SPRING_APPLICATION_NAME=config-server
+    volumes:
+      - ./configs:/config
+    command: ["java", "-jar", "/app/config-server.jar"]
