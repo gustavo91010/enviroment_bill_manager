@@ -4,11 +4,13 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: config-server
+    image: config-server:${IMAGE_TAG}  
     ports:
       - "8888:8888"
     environment:
-      - SPRING_PROFILES_ACTIVE=native
-      - SPRING_APPLICATION_NAME=config-server
+      - SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE}
+      - SPRING_APPLICATION_NAME=${SPRING_APPLICATION_NAME}
     volumes:
       - ./configs:/config
     command: ["java", "-jar", "/app/config-server.jar"]
+
