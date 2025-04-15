@@ -1,0 +1,21 @@
+
+services:
+  config-server:
+    image: config-server-api:latest
+    ports:
+      - "8888:8888"
+    environment:
+      - SPRING_PROFILES_ACTIVE=default
+
+  gateway-api:
+    image: gateway-api:latest
+    depends_on:
+      - config-server
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_APPLICATION_NAME=gateway-api
+      - SPRING_CLOUD_CONFIG_URI=http://config-server:8888
+      - SPRING_PROFILES_ACTIVE=default
+      - "SPRING_CONFIG_IMPORT=optional:configserver:"
+

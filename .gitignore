@@ -2,3 +2,4 @@
 script/**
 workspace_*/**/*.log
 key_vm_004
+./**/build_*
